@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchWeather } from '../actions/index';
 
-export default class SearchBar extends Component {
+class SearchBar extends Component {
   constructor(props) {
     super();
     this.state = { term: '' };
@@ -13,14 +16,17 @@ export default class SearchBar extends Component {
   onFormSubmit(event) {
     event.preventDefault();
 
-    //get weather info
+    this.props.fetchWeather(this.state.term);
+    this.setState({ term: '' });
   }
 
   render() {
     return (
-      <form className="input-group">
+      <form
+        onSubmit={event => this.onFormSubmit(event)}
+        className="input-group"
+      >
         <input
-          onSubmit={this.onFormSubmit}
           placeholder="Search for a 5-day forecast"
           className="form-control"
           value={this.state.term}
@@ -35,3 +41,10 @@ export default class SearchBar extends Component {
     );
   }
 }
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchWeather }, dispatch);
+}
+
+//null, which is usually state, says we don't care about state for this component
+export default connect(null, mapDispatchToProps)(SearchBar);
