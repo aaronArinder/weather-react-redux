@@ -27,7 +27,7 @@ class SearchBar extends Component {
         className="input-group"
       >
         <input
-          placeholder="Search for a 5-day forecast"
+          placeholder="Compare 5-day averages for American cities"
           className="form-control"
           value={this.state.term}
           onChange={event => this.onInputChange(event)}
