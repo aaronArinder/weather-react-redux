@@ -27,7 +27,7 @@ class SearchBar extends Component {
         className="input-group"
       >
         <input
-          placeholder="Compare 5-day averages for American cities"
+          placeholder="Visual comparison of 5-day averages for American cities"
           className="form-control"
           value={this.state.term}
           onChange={event => this.onInputChange(event)}
